@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 //const connectionString = process.env.ATLAS_URI ;
 
-const client = new MongoClient('mongodb+srv://bidding:bidding@bidding.x5qagab.mongodb.net/?retryWrites=true&w=majority');
+const client = new MongoClient('--mongodb atlas connection link--');
 
 let conn;
 try {

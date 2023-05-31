@@ -24,7 +24,7 @@ contract BiddingContract {
 
     function postProject(uint256 projectId, string memory ideaDetails, uint256 maxAmount) public {
         require(projects[projectId].projectId == 0, "Project already exists");
-        uint256 biddingEndTime = block.timestamp + 120; // Set the bidding end time
+        uint256 biddingEndTime = block.timestamp + 300; // Set the bidding end time
        project1.push(projects[projectId] = Project(projectId, payable(msg.sender), ideaDetails, maxAmount, 0, payable(address(0)), biddingEndTime));
         emit ProjectPosted(projectId, payable(msg.sender), ideaDetails, maxAmount);
     }
