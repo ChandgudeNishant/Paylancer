@@ -115,7 +115,7 @@ export default function Projects() {
             alert('Bid Placed Successfully!');
           }catch(error){
             console.error(error); // log the error to the console
-            setGotError(`Error Please check the Bidding Amount`);
+            setGotError(`Error Please check the Project ID & Bidding Amount`);
           }
         };
   
@@ -123,18 +123,12 @@ export default function Projects() {
     setProjectID(event.target.value);
   };
 
-  const handleDetailsChange = (event) => {
-    setDetails(event.target.value);
-  };
-
-  const handleMaxAmountChange = (event) => {
-    setMaxAmount(event.target.value);
-  };
+  
   return (
     <>
-        <MDBNavbar style={{backgroundColor: '#84CEEB'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
-      <MDBContainer fluid>
-      <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/projects'>Paylancer</MDBNavbarBrand>
+      <MDBNavbar style={{backgroundColor: 'white'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
+       <MDBContainer fluid>
+      <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/landing'>Paylancer</MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -149,7 +143,7 @@ export default function Projects() {
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
               <MDBNavbarLink active aria-current='page' href='/home'>
-                Post
+                Post a Project
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
@@ -159,7 +153,12 @@ export default function Projects() {
             </MDBNavbarItem>
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
               <MDBNavbarLink active aria-current='page' href='/projectData'>
-                Project_Details
+                Project Details
+              </MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
+              <MDBNavbarLink active aria-current='page' href='/help'>
+               Help
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
@@ -167,6 +166,7 @@ export default function Projects() {
               </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
+
     <FormContainer>
     <div className='form'>
     <div className='bid'>
@@ -178,6 +178,7 @@ export default function Projects() {
     <h2>Enter Amount:</h2>
     <MDBInput type="number" value={value} onChange={e => setValue(e.target.value)} label='Enter the Price'/>
     <br></br>
+    {gotError}
     <MDBBtn onClick={PlaceBid} type='submit'>Place</MDBBtn>
     </div>
     <br></br>
@@ -248,7 +249,7 @@ background-color: #C1C8E4  ;
   gap: 1px;
   padding-left: 50%;
   // transform: translateX(50%);
-  background-color: #5AB9EA;
+  background-color: white;
   border-radius: 13px;
   padding: 3rem 5rem;
   border: 0.1rem solid #5a2651
@@ -284,7 +285,7 @@ background-color: #C1C8E4  ;
     // justify-content: center;
     flex-direction: column;
     gap: 1px;
-    background-color: #5AB9EA;
+    background-color: white;
     border-radius: 13px;
     padding: 3rem 5rem;
     border: 0.1rem solid #5a2651

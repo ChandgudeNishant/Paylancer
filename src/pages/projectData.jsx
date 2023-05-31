@@ -37,6 +37,9 @@ export default function PlaceBids() {
   const [details,setDetails] = useState('');
   const [bidderInfo, setBidderInfo] = useState([]);
   const [gotError, setGotError] = useState('');
+    const [gotError1, setGotError1] = useState('');
+  const [gotError2, setGotError2] = useState('');
+
   const [projects, setProjects] = useState([]);
   const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
   async function getAccountInfo() {
@@ -92,12 +95,14 @@ export default function PlaceBids() {
 
           });
           // Wait for the transaction to be mined
-      
+      setGotError('')
           // Show success message
-          console.log(data);
+          //console.log(data);
       return data;
         }catch(error){
-          console.error(error); // log the error to the console
+          console.error(error);
+          setGotError(`Error Please check the project ID`);
+          // log the error to the console
           }
       };
       const BidderInfo = async (event) => {
@@ -115,8 +120,12 @@ export default function PlaceBids() {
       
           setBidderInfo(updatedBidderInfo);
           console.log(updatedBidderInfo);
+                setGotError1('')
+
         } catch (error) {
           console.error(error);
+                    setGotError1(`Error Please check the project ID`);
+
         }
       };
 
@@ -136,9 +145,12 @@ export default function PlaceBids() {
         //   //setErrorMessage(error.message);
         //   console.log(error.message.reason);
         //   console.log(error);
+              setGotError2('')
+
         }catch(error){
           console.error(error); // log the error to the console
-  
+                      setGotError2(`Error Please check the project ID`);
+
 
         }
       }
@@ -153,9 +165,9 @@ export default function PlaceBids() {
   };
   return (
     <>
-       <MDBNavbar style={{backgroundColor: '#84CEEB'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
-      <MDBContainer fluid>
-      <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/projects'>Paylancer</MDBNavbarBrand>
+       <MDBNavbar style={{backgroundColor: 'white'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
+       <MDBContainer fluid>
+      <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/landing'>Paylancer</MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -170,7 +182,7 @@ export default function PlaceBids() {
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
               <MDBNavbarLink active aria-current='page' href='/home'>
-                Post
+                Post a Project
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
@@ -180,7 +192,12 @@ export default function PlaceBids() {
             </MDBNavbarItem>
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
               <MDBNavbarLink active aria-current='page' href='/projectData'>
-                Project_Details
+                Project Details
+              </MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
+              <MDBNavbarLink active aria-current='page' href='/help'>
+               Help
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
@@ -203,6 +220,7 @@ export default function PlaceBids() {
   style={{ fontSize: '20px' }}
 />        <br></br>
      <br></br>
+     <p>{gotError}</p>
         <MDBBtn onClick={ProjectInfo} type='submit'>Show</MDBBtn>
 <br></br>
 <br></br>
@@ -226,6 +244,7 @@ export default function PlaceBids() {
   label='Enter Project ID'
   style={{ fontSize: '20px' }} />  
         <br></br>
+        <p>{gotError2}</p>
   <MDBBtn onClick={AssignProject} type='submit'>Assign</MDBBtn>
     
     </div>
@@ -241,6 +260,7 @@ export default function PlaceBids() {
   label='Enter Project ID'
   style={{ fontSize: '20px' }} />      <br></br>
       <br></br>
+      <p>{gotError1}</p>
       <MDBBtn onClick={BidderInfo} type='submit'>Get</MDBBtn>
 
     <MDBTable align='middle'>
@@ -294,7 +314,7 @@ background-color: #C1C8E4  ;
   // justify-content: center;
   flex-direction: column;
   // transform: translateX(50%);
-  background-color: #5AB9EA;
+  background-color: white;
   border-radius: 13px;
   padding: 3rem 5rem;
   border: 0.1rem solid #5a2651
@@ -331,7 +351,7 @@ background-color: #C1C8E4  ;
     // justify-content: center;
     flex-direction: column;
     gap: 1px;
-    background-color: #5AB9EA;
+    background-color: white;
     border-radius: 13px;
     padding: 3rem 5rem;
     border: 0.1rem solid #5a2651
@@ -367,7 +387,7 @@ background-color: #C1C8E4  ;
         // justify-content: center;
         flex-direction: column;
         gap: 1px;
-        background-color: #5AB9EA;
+        background-color: white;
         border-radius: 13px;
         padding: 3rem 5rem;
         border: 0.1rem solid #5a2651

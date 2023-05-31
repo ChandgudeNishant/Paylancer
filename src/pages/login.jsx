@@ -66,7 +66,7 @@ export default function Login() {
         if (accounts.length > 0) {
           setWalletAddress(accounts[0]);
           console.log(accounts[0]);
-          navigate('/projects', {replace: true})
+          navigate('/landing', {replace: true})
         } else {
           console.log("Connect to MetaMask using the Connect button");
         }
@@ -123,7 +123,7 @@ export default function Login() {
 
   return (
    <>
-       <MDBNavbar style={{backgroundColor: '#84CEEB'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
+       <MDBNavbar style={{backgroundColor: 'white'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
       <MDBContainer fluid>
         <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/'>Paylancer</MDBNavbarBrand>
 
@@ -142,7 +142,7 @@ export default function Login() {
     <FormContainer>
       <BrandContainer>
         <Image src={logo} alt="Logo" />
-        <LoginButton onClick={connectWallet}>Login</LoginButton>
+        <LoginButton type="button" onClick={connectWallet}>Login</LoginButton>
       </BrandContainer>
     </FormContainer>
 </>

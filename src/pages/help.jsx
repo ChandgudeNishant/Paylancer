@@ -19,12 +19,12 @@ import {
 } from 'mdb-react-ui-kit';
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useNavigate,NavLink } from 'react-router-dom';
+import { useNavigate ,Link } from 'react-router-dom';
 import { ethers } from 'ethers';
-import BiddingContract from './BiddingContract.json';
-import logo from './logo.jpeg';
+import logo from'./logo.jpeg';
+//import logo1 from './logo1.png';
 
-export default function Home() {
+export default function Help() {
   const [showBasic, setShowBasic] = useState(false);
   const [address, setAddress] = useState('');
   const [balance, setBalance] = useState('');
@@ -34,9 +34,8 @@ export default function Home() {
   const [gotError, setGotError] = useState('');
 
 
-  let navigate = useNavigate();
+const navigate = useNavigate();
   const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
-
 
 
   async function getAccountInfo() {
@@ -66,94 +65,7 @@ export default function Home() {
 
   getAccountInfo();
 
-  // const [skilled, setSkilled] = useState({
-  //   skills: []
-  // });
- 
-
-  // const handleInputs = (e) => {
-  //   const name = e.target.name;
-  //   let value = e.target.value;
-
-  //   // Convert skills input to an array
-  //   if (name === 'skills') {
-  //     value = value.split(',').map(skilled => skilled.trim());
-  //   }
-
-  //   setSkilled(prevUser => ({ ...prevUser, [name]: value }));
-  // };
-  // async function onSubmit(e) {
-  //   e.preventDefault();
   
-  //   // When a post request is sent to the create url, we'll add a new record to the database.
-  //   const newPerson = { ...skilled };
-  
-  //   await fetch("http://localhost:5050/postSkill", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newPerson),
-  //   })
-  //   .catch(error => {
-  //     window.alert(error);
-  //     return;
-  //   });
-  //   setSkilled({ skills:[]});
-   
-  //   console.log(skilled);
-  // }
-
-
-        const accounts =  window.ethereum.request({ method: 'eth_requestAccounts' });
-
-        // Create Web3Provider instance
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-    
-        // Create Signer instance
-        const signer = provider.getSigner(accounts[0]);
-    
-        // Create contract instance
-        const contract = new ethers.Contract(contractAddress, BiddingContract.abi, signer);
-      
-    const postProject = async (event) => {
-        event.preventDefault();
-        try{
-  
-          // Call the contract function
-          const tx = await contract.postProject(projectId, details, maxAmount);
-      
-          // Wait for the transaction to be mined
-          await tx.wait();
-          setGotError('');
-          // Show success message
-           navigate("/projects");
-          console.log('Project posted successfully!');
-          alert('Project posted successfully!')
-        // } catch (error) {
-        //   //console.error('Error adding book:', error);
-        //   //setErrorMessage(error.message);
-        //   console.log(error.message.reason);
-        //   console.log(error);
-        }catch(error){
-          console.error(error); // log the error to the console
-          setGotError(`Error Please check the project ID`);
-
-        }
-      };
-      
-      
-  const handleProjectIDChange = (event) => {
-    setProjectID(event.target.value);
-  };
-
-  const handleDetailsChange = (event) => {
-    setDetails(event.target.value);
-  };
-
-  const handleMaxAmountChange = (event) => {
-    setMaxAmount(event.target.value);
-  };
   return (
     <>
            <MDBNavbar style={{backgroundColor: 'white'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
@@ -199,46 +111,69 @@ export default function Home() {
       </MDBContainer>
     </MDBNavbar>
     <FormContainer>
-    <div className='form'>
-
-    <form >
-
+    <h1>Welcome to Paylancer</h1>
+    <h2>Flow of the Paylancer</h2>
+  <div className='form'>
+    <div className='title'>
+  
+    <h3>➜ How to Create a <Link to="/home">Project</Link></h3>
     <br></br>
-      <h1>Project ID:</h1>
-      <MDBInput  style={{color:'#021a26'}} value={projectId} onChange={handleProjectIDChange} className='inputArea' label='Enter ID' id='typeNumber' type='number' />
-    <br></br>
-    <h1>Project Details:</h1>
-    <MDBTextArea  style={{color:'#021a26'}} value={details} onChange={handleDetailsChange} label='Explain here' id='textAreaExample' rows={4} />
-    <br></br>
-    <h1>Maximum Amount:</h1>
-      <MDBInput  style={{color:'#021a26'}} value={maxAmount} onChange={handleMaxAmountChange} className='inputArea' label='Enter Amount' id='typeNumber' type='number' />
-    
-                <br></br>
-
-                  <MDBBtn style={{fontSize:'15px'}} onClick={postProject} type='submit'>Submit</MDBBtn>
-        </form>
-        <p>{gotError}</p>
     </div>
+    <p>• Enter the unique Project ID, Project explanation with <br /> skill set required for project and the maximum pricing <br/>• Click on Submit to add the project at Paylancer </p>
+    <p></p>
+    <br />
+  </div>
+  <div className='form'>
+    <div className='title'>
+    <h3>➜ How to <Link to="/projects">Bid</Link> a Project</h3>
+    <br></br>
+    </div>
+    <p>• Enter the project ID which contains the matching skills to your Profile <br />• Enter the Minimum Pricing for which you can complete the project<br/>• Click on Bid to make a bid for that project </p>
+    <p></p>
+    <br />
+  </div>
+  <div className='form'>
+    <div className='title'>
+    <h3>➜ Get <Link to="/projectData">Details</Link> of the Projects</h3>
+    <br></br>
+    </div>
+    <p>• Enter the project ID to get details to Client, Freelancer, project information,<br/> maximum pricing, minimum price, <br/>• Click on Get to access the information </p>
+    <p></p>
+    <br />
+  </div>
     </FormContainer>
+
     </>
   );
 }
 const FormContainer = styled.div`
-height: 100vh;
+height: 200vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background-color: #C1C8E4  ;
+  h1 {
+    margin-top:10px;
+    font-family: "Nexa";
+    font-size: 2rem;
+  }
+  h2 {
+    font-family: "Nexa-Light";
+  }
 
-
-  .form {
-    padding: 90px; /* Instead of 20vw */
+  .title{
     margin-top:50px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+  }
+  .form {
+    padding: 20px; /* Instead of 20vw */
+    margin-top:50px;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border-radius: 2rem;
     padding: 3rem 5rem;
@@ -256,6 +191,7 @@ height: 100vh;
     p{
       color: black;
     }
+
     button{
       background-color: #2298d6;
       border-radius: 2rem;

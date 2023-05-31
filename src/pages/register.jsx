@@ -105,9 +105,9 @@ export default function Register() {
 
   return (
     <>
-       <MDBNavbar style={{backgroundColor: '#84CEEB'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
-      <MDBContainer fluid>
-      <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/projects'>Paylancer</MDBNavbarBrand>
+       <MDBNavbar style={{backgroundColor: 'white'}} className='nav' expand='lg' light bgColor='#5AB9EA'>
+       <MDBContainer fluid>
+      <MDBNavbarBrand  style={{ fontFamily: 'Nexa', fontSize: '30px' }} href='/landing'>Paylancer</MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -133,6 +133,11 @@ export default function Register() {
             <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
               <MDBNavbarLink active aria-current='page' href='/projectData'>
                 Project_Details
+              </MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem style={{ fontFamily: 'Nexa-Light', fontSize: '30px', padding:'10px'}}>
+              <MDBNavbarLink active aria-current='page' href='/help'>
+               Help
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
@@ -203,7 +208,7 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: #5AB9EA;
+    background-color: white;
     border-radius: 2rem;
     padding: 3rem 5rem;
     border: 0.1rem solid #5a2651
