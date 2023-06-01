@@ -39,6 +39,8 @@ export default function PlaceBids() {
   const [gotError, setGotError] = useState('');
     const [gotError1, setGotError1] = useState('');
   const [gotError2, setGotError2] = useState('');
+  const [gotError3, setGotError3] = useState('');
+
 
   const [projects, setProjects] = useState([]);
   const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
@@ -131,7 +133,9 @@ export default function PlaceBids() {
 
       const AssignProject = async (event) =>{
         try{
-  
+          const data1 = await contract.getProjectInfo(projectId2);
+
+  if(address === data1[1]){
           // Call the contract function
           const tx = await contract.assignProject(projectId2);
       
@@ -146,10 +150,14 @@ export default function PlaceBids() {
         //   console.log(error.message.reason);
         //   console.log(error);
               setGotError2('')
+              setGotError3('')
+
+  }
+  setGotError2(`The Client can only assign the project`);
 
         }catch(error){
           console.error(error); // log the error to the console
-                      setGotError2(`Error Please check the project ID`);
+        setGotError2(`Error Please check the project ID`);
 
 
         }
@@ -245,6 +253,7 @@ export default function PlaceBids() {
   style={{ fontSize: '20px' }} />  
         <br></br>
         <p>{gotError2}</p>
+        <p>{gotError3}</p>
   <MDBBtn onClick={AssignProject} type='submit'>Assign</MDBBtn>
     
     </div>
