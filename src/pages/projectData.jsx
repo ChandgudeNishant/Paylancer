@@ -43,7 +43,7 @@ export default function PlaceBids() {
 
 
   const [projects, setProjects] = useState([]);
-  const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+  const contractAddress = '0xC0504AF83a4C6F153fb46da8ACe87AB7C9C9dA09';
   async function getAccountInfo() {
     if (typeof window.ethereum !== 'undefined') {
       try {
@@ -157,7 +157,7 @@ export default function PlaceBids() {
 
         }catch(error){
           console.error(error); // log the error to the console
-        setGotError2(`Error Please check the project ID`);
+        setGotError2(`Error: The Bidding Period is not ENDED yet -OR- Please check the project ID`);
 
 
         }
